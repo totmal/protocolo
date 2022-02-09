@@ -45,25 +45,7 @@ class HomeController extends Controller
     public function gravar()
     {
         //$name = $request->input('name');
-        DB::table('protocolodados')->insert(
-            ['protocolo' => request->input('protocolo'), 
-            'nome' => request->input('nome'), 
-            'email' => request->input('email'), 
-            'telefone' => request->input('telefone'), 
-            'endereco' => request->input('endereco'), 
-            'cidade' => request->input('cidade'), 
-            'estado' => request->input('estado'), 
-            'cep' => request->input('cep'), '
-            data' => request->input('data'), 
-            'hora' => request->input('hora'), 
-            'tipo' => request->input('tipo'), 
-            'descricao' => request->input('descricao')]
-            
-            
-        );
-        
-        return ('gravou');
-        return (request()->all());
+      
       
 
         //

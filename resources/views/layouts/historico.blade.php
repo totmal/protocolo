@@ -36,14 +36,16 @@
                 <?php $contador = 1 ?>
 
                     @foreach($protocolo as $equipamento)
-                <form action='editarCadastro.php' method='post' target='_blank'><tbody class='table-hover'>
+                <form action='/editarCadastro' method='post' target='_blank'><tbody class='table-hover'>
+                    @csrf
                 <tr>
-                    <td>{{ $contador }}</td>
-                    <td>{{ $equipamento->protocolo }}</td>
-                    <td>{{ $equipamento->datas }}</td>
-                    <td>{{ $equipamento->nome }}</td>
-                    <td>{{ $equipamento->cpf }}</td>
-                    <td>{{ $equipamento->observacao }}</td>
+                    <input type='hidden' name='_token0' value='{{$equipamento->_token}}'>
+                    <td name="contador">{{ $contador }}</td><input type="hidden" name="contador" value="{{ $contador }}">
+                    <td name="protocolo" >{{ $equipamento->protocolo }}</td><input type="hidden" name="protocolo" value="{{ $equipamento->protocolo }}">
+                    <td name="datas" >{{ $equipamento->datas }}</td><input type="hidden" name="datas" value="{{ $equipamento->datas }}">
+                    <td name="nome" >{{ $equipamento->nome }}</td><input type="hidden" name="nome" value="{{ $equipamento->nome }}">
+                    <td name="cpf" >{{ $equipamento->cpf }}</td><input type="hidden" name="cpf" value="{{ $equipamento->cpf }}">
+                    <td name="observacao" >{{ $equipamento->observacao }}</td><input type="hidden" name="observacao" value="{{ $equipamento->observacao }}">
                     <!-- <td><button type='submit' name='imprimircarta' class='btn btn-primary' value='alterar'>Editar</button></td> -->
                     <td>
 
@@ -52,7 +54,7 @@
                         @else
                         <?php $botaodeimpressao = "<td class='index5'><button type='submit' name='imprimircarta' class='btn btn-success' value='imprimircarta'>Imprimir</button></td>"; ?>
                         @endif
-                      
+                      <input type="hidden" name="tipodecarta" value="{{$equipamento->tipoCarta}}">
                       <?php  
 					
 					print "<button type='submit' name='imprimircarta' class='btn btn-primary' value='alterar'>Editar</button></td>
@@ -70,7 +72,7 @@
     </div>
 </div>
 <br />
-
+@extends('layouts.rodape')
 
 </body>
 </html>

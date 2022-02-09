@@ -1,3 +1,7 @@
+<!-- BUSCAR TODAS AS INFORMAÇÕES NO BD -->
+@foreach($protocolo as $equipamento)
+@endforeach              
+                       
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,68 +33,33 @@
 <!-- o conteúdo vai aqui -->
 
 <!-- o conteúdo vai aqui -->
-<div class="container-fluid text-center" style="background-color: #1659BF; color: white; ">
-
+<div class="container-fluid text-center" style="background-color: #a8a832; color: white; ">
 	<br />
 	<p class="small">MINISTÉRIO DA ECONOMIA <br />
 	OUVIDORIA DO MINISTÉRIO DA ECONOMIA<br />
 	Esplanada dos ministérios, Bloco F, Ed. Anexo 1º andar, Ala "A", Sala 179 - CEP: 70.059-900 - Brasília-DF</p>
 	<br />
-	<h2><strong>FORMULÁRIO DE REGISTRO DE PROTOCOLOS</strong></h2>
+	<h2><strong>EDITOR DE REGISTRO DE PROTOCOLOS</strong></h2>
 	<small>Os campos com <small style="color:red;">*</small>  são de preenchimento obrigatório.</small><br />
 	<br>
-	<p class="btn btn-primary"><a href="/pesquisa" class="text-white">Pesquisar CPF/Nome</a></p>
+	
 	
 	
 </div>
-<form method="get" action="/gravar" style="font-weight: bold;">
+<form method="post" action="/update" style="font-weight: bold;">
 @csrf
 		<div class="row form-group" >
 		
 			<div class="col-3 border pl-4 pr-4 p-1">
 					<label>PROTOCOLO <small style="color:red;">*</small> </label> <br />
 					
-									
-					
-					<select name="" id="mySelect" onchange="myFunctionprotocolo()" class="form-control">
-					<option value="" disabled selected>Escolha o tipo...</option>	
-					<option value="protocolo_BICF">BICF</option>
-					<option value="protocolo_SEI">SEI</option>
-					<option value="outros">OUTROS</option>
-					</select>
+				
 					<div id="campos">
-						<input type="text" name="protocolo" placeholder="99999" id="protocolo_BICF" class="form-control bicf" style="display:none">
-						<input type="text" name="protocolo1" placeholder="99999.999999/9999-99" id="protocolo_SEI" class="form-control protocolosei" style="display:none">
-						<input type="text" name="protocolo2" placeholder="outros" id="outros" class="form-control" style="display:none">						
+						
+						<input type="text" name="protocoloid" placeholder="outros" id="protocoloid" class="form-control" value="{{$equipamento->protocolo}}">						
 					</div>
 				
 
-					<script>
-					function myFunctionprotocolo() {
-					  var x = document.getElementById("mySelect").value;
-					  
-					  if (x == "protocolo_BICF") {
-						document.getElementById("protocolo_BICF").style.display = "initial";
-						document.getElementById("protocolo_SEI").style.display = "none";
-						document.getElementById("outros").style.display = "none";
-					  } else if (x == "protocolo_SEI") {
-						document.getElementById("protocolo_SEI").style.display = "initial";
-						document.getElementById("protocolo_BICF").style.display = "none";
-						document.getElementById("outros").style.display = "none";
-					  } else if (x == "outros") {
-						document.getElementById("outros").style.display = "initial";
-						document.getElementById("protocolo_BICF").style.display = "none";
-						document.getElementById("protocolo_SEI").style.display = "none";
-					  }
-					}
-					if (document.getElementById("mySelect").value === "protocolo_BICF") {
-						document.getElementById("protocolo_BICF").style.display = "";
-						
-					}
-					</script>
-					
-
-					
 			</div>
 			
 			<div class="col-3 border pl-4 pr-4 p-1">
@@ -102,7 +71,7 @@
 				</select>	 -->
 				
 				<div id="abas">
-					<input type="text" name="cpfcnpj" placeholder="CPF/CNPJ" id="cpfcnpj" class="form-control" maxlength="20">
+					<input type="text" name="cpfcnpj" placeholder="CPF/CNPJ" id="cpfcnpj" class="form-control" maxlength="20" value="{{$equipamento->cpf}}">
 					<!-- <input type="text" name="cpfcnpj" placeholder="999.999.999-99" id="cpf" class="form-control" style="display:none"> -->
 					<!-- <input type="text" name="cnpj" placeholder="99.999.999/9999-99" id="cnpj" class="form-control" style="display:none"> -->
 				</div>				
@@ -111,7 +80,7 @@
 			
 			<div class="col-6 border pl-4 pr-4 p-1">
 				<label for="nome">Nome <small style="color:red;">*</small></label> <br />
-				<input required="true" name="nome" type="text" placeholder="INSIRA NOME DO CIDADÃO OU EMPRESA..."  class="form-control text-uppercase" maxlength="50">
+				<input required="true" name="nome" type="text" placeholder="INSIRA NOME DO CIDADÃO OU EMPRESA..."  class="form-control text-uppercase" maxlength="50" value="{{$equipamento->nome}}">
 			</div>
 			
 		</div>
@@ -121,26 +90,22 @@
 			
 			<div class="col-3 border pl-4 pr-4 p-1">
 				<label for="meio_entrada">Meio de Entrada <small style="color:red;">*</small></label> <br />
-				<select name="meio_entrada" class="form-control" name="meio_entrada" required="true">
-					<option SELECTED disabled="true">Escolha..</option>
-					<option>Carta</option>
-					<option>E-mail</option>					
-				</select>
+				<input type="text" name="meio_entrada" placeholder="outros" id="meio_entrada" class="form-control" value="{{$equipamento->meio_entrada}}">
 			</div>
 						
 			<div class="col-3 border pl-4 pr-4 p-1">
 				<label for="codigo_entrada">Código</label> <br />
-				<input  name="codigo_entrada" type="text" class="form-control protocolosei" placeholder="FalaBr/SisOuvidor... " maxlength="50">
+				<input  name="codigo_entrada" type="text" class="form-control" placeholder="FalaBr/SisOuvidor... " maxlength="50" value="{{$equipamento->codigo_entrada}}">
 			</div>			
 			
 			<div class="col-3 border pl-4 pr-4 p-1">
 				<label for="telefone">Telefone</label> <br />
-				<input type="tel" id="telefone" class="form-control phone_with_ddd" name="telefone" placeholder="( ) 99999-9999" >
+				<input type="tel" id="telefone" class="form-control phone_with_ddd" name="telefone" placeholder="( ) 99999-9999" value="{{$equipamento->telefone}}">
 			</div>			
 			
 			<div class="col-3 border pl-4 pr-4 p-1">
 				<label for="resp_cadastro">Responsável pelo cadastro <small style="color:red;">*</small></label> <br />
-				<input required="true" name="resp_cadastro" type="text"	class="form-control text-uppercase" value="{{auth() -> user() -> name}}" placeholder="" maxlength="50">
+				<input required="true" name="resp_cadastro" type="text"	class="form-control text-uppercase" value="{{auth() -> user() -> name}}" placeholder="" maxlength="50" >
 			</div>
 		</div>
 		
@@ -148,17 +113,13 @@
 		
 		<!-- AQUI COMEÇA A TERCEIRA LINHA DE DADOS -->
 		<div class="row form-group m-3 mb-5">
-			<div class="col-2 border pl-4 pr-4 p-1 text-center">
-				<label for="endereco">Possui Endereço?</label> <br />
-				<input type="checkbox" class="form-control text-uppercase" name="haendereco" id="haendereco" onclick="myFunction()">
-			</div>
-			
-			<div class="col-10 border pl-4 pr-4 p-1" style="display:none" id="endereco" >
+					
+			<div class="col-10 border pl-4 pr-4 p-1" id="endereco" >
 				<div class="row">
-				<div class="col-4"><label for="endereco">Logradouro</label><input type="text" class="form-control" name="endereco" maxlength="50"></div>
-				<div class="col-1"> <label for="numero">Nº</label><input  type="text" class="form-control text-uppercase" name="numero" maxlength="4"/></div>
-				<div class="col-2"> <label for="bairro">Bairro</label><input  type="text" class="form-control" name="bairro" maxlength="25"/></div>				
-				<div class="col-2"><label for="cidade">Cidade</label> <input  type="text" class="form-control" name="cidade" maxlength="25"/></div>				
+				<div class="col-4"><label for="endereco">Logradouro</label><input type="text" class="form-control" name="endereco" maxlength="50" value="{{$equipamento->endereco}}"></div>
+				<div class="col-1"> <label for="numero">Nº</label><input  type="text" class="form-control text-uppercase" name="numero" maxlength="4" value="{{$equipamento->numero}}"/></div>
+				<div class="col-2"> <label for="bairro">Bairro</label><input  type="text" class="form-control" name="bairro" maxlength="25" value="{{$equipamento->bairro}}"/></div>				
+				<div class="col-2"><label for="cidade">Cidade</label> <input  type="text" class="form-control" name="cidade" maxlength="25" value="{{$equipamento->cidade}}"/></div>				
 				<div class="col-1">					
 					<label for="uf"> UF </label> <br />
 					<select name="uf" class="form-control">					
@@ -190,9 +151,10 @@
 						<option value="SE">SE</option>
 						<option value="SP">SP</option>
 						<option value="TO">TO</option>
+                        <option value="{{$equipamento->uf}}" selected>{{$equipamento->uf}}</option>
 					</select>
 				</div>				
-				<div class="col-2"><label for="cep">CEP</label><input placeholder="00.000-000"  type="text" class="form-control text-uppercase cepnacional" id="cep1" name="cep" /></div>
+				<div class="col-2"><label for="cep">CEP</label><input placeholder="00.000-000"  type="text" class="form-control text-uppercase cepnacional" id="cep1" name="cep" value="{{$equipamento->cep}}"/></div>
 				
 				</div>
 			</div>
@@ -208,42 +170,19 @@
 			<div class="col-4">
 				
 				<label for="observacao">Informações Complementares</label> <br />
-				<textarea class="form-control" rows="5" name="observacao" placeholder="As informações inseridas aqui serão lidas pelo cidadão."></textarea>
+				<textarea class="form-control" rows="5" name="observacao" placeholder="As informações inseridas aqui serão lidas pelo cidadão.">{{$equipamento->observacao}}</textarea>
 				<!--<textarea class="form-control text-uppercase" rows="5" name="observacao" placeholder="As informações inseridas aqui serão lidas pelo cidadão."></textarea> -->
 			</div>
 			<div class="col-4"></div>
 		</div>
-		
-		<!-- AQUI MARCAR TIPO DE CARTA SERÁ EMITIDA, SE NÃO FOR SELECIONADO NÃO GERA CARTA-->
-		<div class="row form-group">
-			<div class="col-4"></div>
-			
-			<div class="col-5">
-				
-				<p for="observacao" class="text-left" style="color: red;">Emitir Carta?</p>
-				
-		
-				<div class="form-check">
-				  <input class="form-check-input" type="radio" name="tipoCarta" id="gridRadios1" value="naoEmitir" checked required> <!--  checked-->
-				  <label class="form-check-label" for="gridRadios1"> 
-					Não emitir 
-				  </label> <br /> <br />
-				  
-				  <!--Imprimir carta empresa -->
-				  <input class="form-check-input" type="radio" name="tipoCarta" id="gridRadios3" value="empresa" required>
-				 <label class="form-check-label" for="gridRadios2">
-					Empresa 
-				 </label> <br /> <br />
-				  
-				</div>
-		
-				<!-- Abilitar função para carta Fala.Br-->
-			<div class="row">
+
+		<div class="row">
 				
 							
-				
-			<div class="col-12 border pl-4 pr-4 p-2 m-2 form-check">				
-				<p class="text-center"> Carta Fala.BR
+			<div class="col-4"></div>	
+			<div class="col-4 border pl-4 pr-4 p-2 m-2 form-check">				
+				<p class="text-center"> Carta Fala.BR <br>
+					<label style="color: red;">(a Carta não será impressa nesta edição)</label>
 				</p>
 				
 				 <input class="form-check-input" type="radio" name="tipoCarta" id="gridRadios2" value="ministerio_falabr">
@@ -262,21 +201,21 @@
 				 </label> <br /> <br />
 				
 			</div>
+			<div class="col-4"></div>	
 				
 		
-			</div>	
-			
 			</div>
-
-		</div>				
 		
+					
+		<input type="hidden" name="iddatas" value="{{$equipamento->id}}">
 		<!-- AQUI COMEÇA A QUINTA LINHA DE DADOS -->
 		<div class="row form-group" align="center" >
 			<div class="col-3"></div>
 			<div class="col-6">
-				<button type="submit" name="enviar" class="btn btn-success" value="enviar">Registrar</button>
-				<button type="reset" name="reset" class="btn btn-warning" value="reset">Limpar campos</button>
-				<button type="button" name="atualizar" class="btn btn-info" value="atualizar" onClick="history.go(0)">Atualizar Página</button>
+				<button type="submit" name="enviar" class="btn btn-success" value="enviar">Atualizar</button>
+                <a href="/" class="btn btn-info"> Voltar</a>
+				
+				
 			</div>
 			<div class="col-3"></div>		
 		</div>
@@ -340,8 +279,5 @@
 
 		});
 	</script>
-
-
-@extends('layouts.historico')
-
-
+</body>
+</html>

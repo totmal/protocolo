@@ -14,6 +14,7 @@ class CadastroProtocoloTable extends Migration
     public function up()
     {
         Schema::create('protocolo', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->longText('_token');
             $table->timestamp('datas');
                 $table->text('tipoCarta')->nullable();

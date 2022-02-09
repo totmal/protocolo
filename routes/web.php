@@ -56,6 +56,20 @@ Route::get('/gravar', function ($filename)
     return $response;
 });
 
+Route::post('/editarCadastro', [protocoloController::class, 'edit']);
+
+
+
+//esta rota funciona perfeitamente
+Route::post('/update', [protocoloController::class, 'update']);
+
+
+//esta rota funciona perfeitamente
+Route::get('/editarCadastro', [protocoloController::class, 'edit']);
+
+
+
+
 
 
 Route::get('/gravar', [protocoloController::class, 'store']);

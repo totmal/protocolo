@@ -1,22 +1,8 @@
-<?php
-$id = $_GET['_token'];
-
-
-$nome = $_GET['nome'];
-
-$codigo_entrada = $_GET['codigo_entrada'];
-$observacao = $_GET['observacao'];
-
-$endereco = $_GET['endereco'];
-$bairro = $_GET['bairro'];
-$numero = $_GET['numero'];
-$cep = $_GET['cep'];
-$uf = $_GET['uf'];
-$cidade = $_GET['cidade'];
+@foreach($protocolo as $equipamento)
 
 
 
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,12 +54,14 @@ $cidade = $_GET['cidade'];
         <br /><br />
             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Senhor (a) <label class="text-uppercase"> < ?php echo "$nome" ?></label>,<br /><br /> -->
             <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Senhor (a) <label class="text-capitalize"><php echo "$nome" ?></label>,<br /><br /> -->
-            Ao Senhor (a), <br /><label class="text-capitalize"> <?php echo "$nome" ?></label> <br />			
-					<?php echo "$endereco - $bairro - $numero <br />
-						 CEP: $cep - $cidade - $uf" ?><br /> <br />
+            Ao Senhor (a), <br /><label class="text-capitalize"> {{$equipamento->nome}}</label> <br />			
+					<br /> <br />
+                         {{$equipamento->endereco}} - {{$equipamento->bairro}} - {{$equipamento->numero}} <br />
+                         CEP: {{$equipamento->cep}} - {{$equipamento->cidade}} - {{$equipamento->uf}} <br />  <br />  
+
             
             <p class="text-justify">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comunicamos que a carta dirigida ao Exmo. Sr. Presidente da República foi cadastrada nesta Ouvidoria, sob o número de protocolo <?php echo "$codigo_entrada"; ?>, e será levada ao conhecimento da área responsável para análise dos fatos. <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comunicamos que a carta dirigida ao Exmo. Sr. Presidente da República foi cadastrada nesta Ouvidoria, sob o número de protocolo {{$equipamento->codigo_entrada}}, e será levada ao conhecimento da área responsável para análise dos fatos. <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A resposta final poderá ser consultada, mediante o fornecimento do número do protocolo e do código de acesso, por meio do seguinte link: <br />
                 
             </p>	
@@ -91,6 +79,7 @@ $cidade = $_GET['cidade'];
             
             <p class="text-justify">
             <?php
+            $observacao = $equipamento->observacao;
 				if($observacao != ""){
 				
 				echo "Observação: $observacao";
@@ -103,7 +92,7 @@ $cidade = $_GET['cidade'];
             
                             
     </div>
-				<div class="footer">
+				<div class="footer text-center">
 				   <p> Esplanada dos Ministérios, Bloco F, Ed. Anexo, Ala A, Térreo - Bairro Zona Cívica, CEP 70.059-900 - Brasília/DF <br /></p>
 				</div>	
 				
@@ -112,10 +101,12 @@ $cidade = $_GET['cidade'];
 </div>
 <a href="/" class="btn btn-primary no-print">Voltar para o Sistema</a>
 <script>
-	// window.print()
+	window.print()
 </script> 
 
 	
-<footer class="text-center" style="bottom:0; position:absolute; text-align:center;"><?php echo "id: $id"?></footer>
+<footer class="text-center" style="bottom:0; position:absolute; text-align:center;">{{$equipamento->id}}</footer>
 </body>
 </html>
+
+@endforeach
