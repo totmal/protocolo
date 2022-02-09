@@ -153,7 +153,7 @@ class protocoloController extends Controller
 if($imprimircarta == "alterar"){
         $protocolo = DB::table('protocolo')
         ->where('cpf', $request->cpf)
-        ->where('protocolo', $request->protocolo)
+        ->where('nome', $request->nome)
         ->where('datas', $request->datas)
         ->take(30) 
         ->get();

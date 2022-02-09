@@ -52,7 +52,7 @@
 					
 									
 					
-					<select name="" id="mySelect" onchange="myFunctionprotocolo()" class="form-control">
+					<select name="" id="mySelect" onchange="myFunctionprotocolo()" class="form-control" required>
 					<option value="" disabled selected>Escolha o tipo...</option>	
 					<option value="protocolo_BICF">BICF</option>
 					<option value="protocolo_SEI">SEI</option>
@@ -95,16 +95,10 @@
 			
 			<div class="col-3 border pl-4 pr-4 p-1">
 				<label>CPF/CPNJ <small style="color:red;">*</small> </label> <br />				
-				<!-- <select class="form-control">
-					<option value="" disabled selected>física/juridica</option>					
-					<option onclick="document.getelementbyid('cpf').style.display='initial'; document.getelementbyid('cnpj').style.display='none'" id="cpf1">cpf</option>
-					<option onclick="document.getelementbyid('cnpj').style.display='initial'; document.getelementbyid('cpf').style.display='none'" id="cnpj1">cnpj</option>
-				</select>	 -->
-				
+								
 				<div id="abas">
 					<input type="text" name="cpfcnpj" placeholder="CPF/CNPJ" id="cpfcnpj" class="form-control" maxlength="20">
-					<!-- <input type="text" name="cpfcnpj" placeholder="999.999.999-99" id="cpf" class="form-control" style="display:none"> -->
-					<!-- <input type="text" name="cnpj" placeholder="99.999.999/9999-99" id="cnpj" class="form-control" style="display:none"> -->
+					
 				</div>				
 				
 			</div>
@@ -300,6 +294,7 @@
 	}
 	</script>
 
+<!-- mascaras necessárias ao projeto -->
 	<script>
 		$(document).ready(function(){
   $('.date').mask('00/00/0000');

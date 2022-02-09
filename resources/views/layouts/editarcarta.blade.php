@@ -56,7 +56,7 @@
 				
 					<div id="campos">
 						
-						<input type="text" name="protocoloid" placeholder="outros" id="protocoloid" class="form-control" value="{{$equipamento->protocolo}}">						
+						<input type="text" name="protocoloid" placeholder="outros" id="protocoloid" class="form-control" value="{{$equipamento->protocolo}}" required>						
 					</div>
 				
 
@@ -64,23 +64,17 @@
 			
 			<div class="col-3 border pl-4 pr-4 p-1">
 				<label>CPF/CPNJ <small style="color:red;">*</small> </label> <br />				
-				<!-- <select class="form-control">
-					<option value="" disabled selected>física/juridica</option>					
-					<option onclick="document.getelementbyid('cpf').style.display='initial'; document.getelementbyid('cnpj').style.display='none'" id="cpf1">cpf</option>
-					<option onclick="document.getelementbyid('cnpj').style.display='initial'; document.getelementbyid('cpf').style.display='none'" id="cnpj1">cnpj</option>
-				</select>	 -->
-				
+								
 				<div id="abas">
-					<input type="text" name="cpfcnpj" placeholder="CPF/CNPJ" id="cpfcnpj" class="form-control" maxlength="20" value="{{$equipamento->cpf}}">
-					<!-- <input type="text" name="cpfcnpj" placeholder="999.999.999-99" id="cpf" class="form-control" style="display:none"> -->
-					<!-- <input type="text" name="cnpj" placeholder="99.999.999/9999-99" id="cnpj" class="form-control" style="display:none"> -->
+					<input type="text" name="cpfcnpj" placeholder="CPF/CNPJ" id="cpfcnpj" class="form-control" maxlength="20" value="{{$equipamento->cpf}}" required>
+					
 				</div>				
 				
 			</div>
 			
 			<div class="col-6 border pl-4 pr-4 p-1">
 				<label for="nome">Nome <small style="color:red;">*</small></label> <br />
-				<input required="true" name="nome" type="text" placeholder="INSIRA NOME DO CIDADÃO OU EMPRESA..."  class="form-control text-uppercase" maxlength="50" value="{{$equipamento->nome}}">
+				<input required="true" name="nome" type="text" placeholder="INSIRA NOME DO CIDADÃO OU EMPRESA..."  class="form-control text-uppercase" maxlength="50" value="{{$equipamento->nome}}" required>
 			</div>
 			
 		</div>
@@ -90,7 +84,7 @@
 			
 			<div class="col-3 border pl-4 pr-4 p-1">
 				<label for="meio_entrada">Meio de Entrada <small style="color:red;">*</small></label> <br />
-				<input type="text" name="meio_entrada" placeholder="outros" id="meio_entrada" class="form-control" value="{{$equipamento->meio_entrada}}">
+				<input type="text" name="meio_entrada" placeholder="outros" id="meio_entrada" class="form-control" value="{{$equipamento->meio_entrada}}" required>
 			</div>
 						
 			<div class="col-3 border pl-4 pr-4 p-1">
@@ -239,6 +233,8 @@
 	}
 	</script>
 
+
+<!-- mascaras necessárias ao projeto -->
 	<script>
 		$(document).ready(function(){
   $('.date').mask('00/00/0000');
