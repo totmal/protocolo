@@ -55,6 +55,7 @@
                         <?php $botaodeimpressao = "<td class='index5'><button type='submit' name='imprimircarta' class='btn btn-success' value='imprimircarta'>Imprimir</button></td>"; ?>
                         @endif
                       <input type="hidden" name="tipodecarta" value="{{$equipamento->tipoCarta}}">
+                      <input type="hidden" name="id" value="{{$equipamento->id}}">
                       <?php  
 					
 					print "<button type='submit' name='imprimircarta' class='btn btn-primary' value='alterar'>Editar</button></td>

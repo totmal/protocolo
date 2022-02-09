@@ -118,5 +118,3 @@ $cidade = $_GET['cidade'];
 
 	
 <footer class="text-center" style="bottom:0; position:absolute; text-align:center;"><?php echo "id: $id"?></footer>
-</body>
-</html>

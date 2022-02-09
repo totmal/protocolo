@@ -152,24 +152,21 @@ class protocoloController extends Controller
         //return $imprimircarta;
 if($imprimircarta == "alterar"){
         $protocolo = DB::table('protocolo')
-        ->where('cpf', $request->cpf)
-        ->where('nome', $request->nome)
-        ->where('datas', $request->datas)
+        ->where('id', $request->id)
+       
         ->take(30) 
         ->get();
         
         return view('layouts.editarcarta', compact('protocolo'));
 }else{
     $protocolo = DB::table('protocolo')
-        ->where('cpf', $request->cpf)
-        ->where('protocolo', $request->protocolo)
-        ->where('datas', $request->datas)
-        ->take(30) 
+    ->where('id', $request->id)
+        
         ->get();
     $nome = $request->nome;
         $id = $request->id;
        $tipodecarta = $request->tipodecarta;
-                  //  return "$tipodecarta a";
+               // return "$tipodecarta a  $id";
         
         switch ($tipodecarta) {
                         
